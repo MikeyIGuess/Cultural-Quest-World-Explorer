@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Quest: World Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="globe.js" defer></script>
+</head>
+<body>
+    <canvas id="globeCanvas"></canvas>
+    <div class="container">
+        <h1>
+            <span class="title-word" style="animation-delay: 0.1s">Cultural</span>
+            <span class="title-word" style="animation-delay: 0.3s">Quest:</span>
+            <span class="title-word" style="animation-delay: 0.5s">World</span>
+            <span class="title-word" style="animation-delay: 0.7s">Explorer</span>
+        </h1>
+        
+        <!-- Audio elements for sound effects -->
+        <audio id="correctSound" src="https://cdn.freesound.org/previews/220/220156_4100837-lq.mp3"></audio>
+        <audio id="incorrectSound" src="https://cdn.freesound.org/previews/220/220162_4100837-lq.mp3"></audio>
+        <audio id="buttonClickSound" src="https://cdn.freesound.org/previews/220/220159_4100837-lq.mp3"></audio>
+        
+        <div id="mainMenu" class="section">
+            <h2>Main Menu</h2>
+            <button onclick="showDifficultySelect()">Play Quiz</button>
+            <button onclick="showAvatarCustomization()">Avatar Customization</button>
+            <div class="points-display">Points: <span id="pointsDisplay">0</span></div>
+        </div>
+
+        <div id="difficultySection" class="section hidden">
+            <h2>Select Difficulty</h2>
+            <button onclick="startQuiz('easy')" class="difficulty-btn easy">Easy</button>
+            <button onclick="startQuiz('medium')" class="difficulty-btn medium">Medium</button>
+            <button onclick="startQuiz('hard')" class="difficulty-btn hard">Hard</button>
+            <button onclick="returnToMain()" class="back-btn">Back to Menu</button>
+        </div>
+
+        <div id="quizSection" class="section hidden">
+            <h2>Quiz</h2>
+            <div id="questionContainer">
+                <p id="questionText"></p>
+                <div id="answerButtons" class="btn-grid">
+                    <!-- Answer buttons will be inserted here -->
+                </div>
+            </div>
+            <div id="quizProgress">Question <span id="currentQuestion">0</span>/<span id="totalQuestions">0</span></div>
+            <button onclick="backToMenu()" class="back-btn">Back to Menu</button>
+        </div>
+
+        <div id="avatarSection" class="section hidden">
+            <h2>Avatar Customization</h2>
+            <div class="points-display avatar-points">Available Points: <span id="avatarPointsDisplay">0</span></div>
+            <div class="avatar-container">
+                <div class="customization-menu">
+                    <h3>Categories</h3>
+                    <button class="category-btn" data-category="clothing">
+                        <i class="category-icon">👕</i>Clothing
+                    </button>
+                    <button class="category-btn" data-category="hats">
+                        <i class="category-icon">👒</i>Hats
+                    </button>
+                    <button class="category-btn" data-category="footwear">
+                        <i class="category-icon">👞</i>Footwear
+                    </button>
+                    <button class="category-btn" data-category="background">
+                        <i class="category-icon">🖼️</i>Background
+                    </button>
+                </div>
+
+                <div id="avatarDisplay">
+                    <div class="avatar-preview">
+                        <div class="avatar-base">
+                            <div class="avatar-hair">👤</div>
+                            <div class="avatar-clothing">👕</div>
+                            <div class="avatar-footwear">👞</div>
+                            <div class="avatar-accessories"></div>
+                        </div>
+                    </div>
+                    <div class="avatar-controls">
+                        <button onclick="resetAvatar()" class="control-btn">Reset Avatar</button>
+                    </div>
+                </div>
+                <div id="itemSelection">
+                    <h3>Available Items</h3>
+                    <div class="items-grid">
+                        <!-- Items will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+            <button onclick="backToMenu()" class="back-btn">Back to Menu</button>
+        </div>
+    </div>
+    <script src="questions.js"></script>
+    <script src="game.js"></script>
+    <script src="avatar.js"></script>
+    <script src="animations.js"></script>
+</body>
+</html> 
